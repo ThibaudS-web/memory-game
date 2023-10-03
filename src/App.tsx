@@ -1,8 +1,12 @@
+import "./index.css"
+
 function App() {
 
   return (
     <>
-      <h1>Hello world!</h1>
+      <div className="bg-bg-startmenu w-screen h-screen">
+       
+      </div>
     </>
   )
 }
