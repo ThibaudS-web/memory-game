@@ -4,7 +4,7 @@
 
 @layer base {
     html {
-        font-family: 'Atkinson Hyperlegible';
+        font-family: 'Atkinson Hyperlegible', sans-serif;
     }
 
     h1 {
@@ -22,4 +22,19 @@
     body {
         font-size: 1.125rem;
     }
+}
+
+@layer components {
+  .btn-select {
+    background-color: #DFE7EC;
+    color: #FCFCFC;
+    border-radius: 2rem;
+    font-weight: bold;
+    width: 100%;
+    font-size: 1.625rem;
+  } 
+
+  .btn-select:hover{
+    background-color: #6395B8;
+  }
 }

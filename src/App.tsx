@@ -1,12 +1,13 @@
+import Menu from "./components/Menu"
 import "./index.css"
 
 function App() {
 
   return (
     <>
-      <div className="bg-bg-startmenu w-screen h-screen">
-       
-      </div>
+      <main className="bg-bg-startmenu w-screen h-screen flex items-center justify-center ">
+        <Menu />
+      </main>
     </>
   )
 }
