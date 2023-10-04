@@ -1,12 +1,12 @@
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  handleClick: (arg?: string) => void
+  handleClick?: () => void
   children: string
 }
 
 const Button = ({ handleClick, children, ...props }: ButtonProps) => {
 
   return (
-    <button className={props.className} onClick={() => handleClick()}>{children}</button>
+    <button onClick={handleClick} className={props.className}>{children}</button>
   )
 }
 

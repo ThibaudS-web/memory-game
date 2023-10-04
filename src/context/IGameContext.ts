@@ -1,4 +1,4 @@
-interface GameContext {
+interface IGameContext {
     gameOptions: {
         theme: "numbers" | "icons",
         players: "1" | "2" | "3" | "4",
@@ -16,6 +16,15 @@ interface GameContext {
         move: number,
         timer: number,
     },
+
+    gameIsRunning: boolean
+
+    setTheme: React.Dispatch<React.SetStateAction<"numbers" | "icons">>,
+    setPlayers: React.Dispatch<React.SetStateAction<"1" | "2" | "3" | "4">>
+    setGridSize: React.Dispatch<React.SetStateAction<"small" | "large">>
+
+    setGameIsRunning: React.Dispatch<React.SetStateAction<boolean>>
+
 }
 
-export default GameContext
+export default IGameContext
