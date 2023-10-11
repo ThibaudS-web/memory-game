@@ -1,6 +1,11 @@
+import Tiles from "./Tiles"
+
 const SinglePlayerGame = () => {
+  
   return (
-    <div>SinglePlayerGame</div>
+    <>
+      <Tiles />
+    </>
   )
 }
 

@@ -1,3 +1,5 @@
+import { Tile } from "../types/tile"
+
 interface IGameContext {
     gameOptions: {
         theme: "numbers" | "icons",
@@ -17,13 +19,20 @@ interface IGameContext {
         timer: number,
     },
 
-    gameIsRunning: boolean
+    tiles: Tile[]
+
+    isRunningGame: boolean
+    isMultiPlayersGame: boolean,
 
     setTheme: React.Dispatch<React.SetStateAction<"numbers" | "icons">>,
     setPlayers: React.Dispatch<React.SetStateAction<"1" | "2" | "3" | "4">>
     setGridSize: React.Dispatch<React.SetStateAction<"small" | "large">>
 
-    setGameIsRunning: React.Dispatch<React.SetStateAction<boolean>>
+    setIsRunningGame: React.Dispatch<React.SetStateAction<boolean>>
+
+    startGame: () => void
+    newGame: () => void
+    generateTiles: () => void
 
 }
 

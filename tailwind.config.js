@@ -26,18 +26,27 @@ export default {
       fontSize: {
         '3xl': '2em',
         'paragraph-sm': '0.9375em',
-        '6x6-number': '2,75rem',
-        '4x4-number': '3,5rem'
+        'tile-small': '2.75rem',
+        'tile-large': '3.5rem'
       },
       maxWidth: {
         '2xl': '654px'
       },
       width: {
-        '6/7': '87.202%'
+        '6/7': '87.202%',
+        'tile-large': '7.375rem',
+        'tile-small': '5.125rem',
+        'wrapper-tile-small': '33.25rem',
+        'wrapper-tile-large': '35.75rem'
+      },
+      height: {
+        'tile-large': '7.375rem',
+        'tile-small': '5.125rem'
       },
       screens: {
         'md': { 'max': '767px' },
         'sm': { 'max': '500px' },
+        'xsm': { 'max': '360px' },
       }
     },
 
