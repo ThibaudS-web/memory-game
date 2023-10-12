@@ -1,5 +1,5 @@
 export type Tile = {
     id: number,
     content: number,
-    checked: boolean
+    matched: boolean
 }

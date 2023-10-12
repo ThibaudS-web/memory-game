@@ -7,7 +7,7 @@ import MultiplayersGame from "./MultiplayersGame"
 
 const LayoutGame = () => {
     const { newGame, isMultiPlayersGame } = useContext(GameContext)
-    
+
     return (
         <>
             <div className="page-wrapper">

@@ -19,7 +19,7 @@ export default {
         'menu-selection-hover': '#6395B8',
         'menu-selection-idle': '#BCCED9',
         'tile-bg-notchecked': '#304859',
-        'tile-bg-checked': '#BCCED9',
+        'tile-bg-matched': '#BCCED9',
         'title-hover': '#6395B8',
         'text-primary': '#7191A5'
       },

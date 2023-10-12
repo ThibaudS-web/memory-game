@@ -22,7 +22,7 @@ const initial: IGameContext = {
     },
 
     tiles: [],
-
+    checkedTiles: [],
     isRunningGame: false,
     isMultiPlayersGame: false,
 
@@ -33,7 +33,10 @@ const initial: IGameContext = {
     setIsRunningGame: () => { },
     startGame: () => { },
     newGame: () => { },
-    generateTiles: () => { }
+    generateTiles: () => { },
+    setCheckedTiles: () => { },
+    compareTileValue: () => { },
+    setScoreSinglePlayer: () => { }
 }
 
 export const GameContext = createContext(initial);
@@ -45,11 +48,15 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [gridSize, setGridSize] = useState(initial.gameOptions.gridSize)
 
     const [isMultiPlayersGame, setIsMultiPlayersGame] = useState(initial.isMultiPlayersGame)
+
     const [isRunningGame, setIsRunningGame] = useState(initial.isRunningGame)
 
     const [tiles, setTiles] = useState<Tile[]>([])
+    const [checkedTiles, setCheckedTiles] = useState<Tile[]>([])
 
     const [numbersOfTiles, setnumbersOfTiles] = useState(8)
+
+    const [scoreSinglePlayer, setScoreSinglePlayer] = useState(initial.scoreSinglePlayer)
 
     const gameOptions = {
         theme,
@@ -74,12 +81,11 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
             tiles.push({
                 id: (i + 1),
                 content: i + 1,
-                checked: false
+                matched: false
             })
         }
 
         let copyTiles = tiles
-
         setTiles([...copyTiles, ...tiles])
     }
 
@@ -87,30 +93,51 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         generateTiles()
         selectSingleOrMultiPlayers()
         setIsRunningGame(true)
-
     }
 
     const newGame = () => {
         setTheme(initial.gameOptions.theme)
         setPlayers(initial.gameOptions.players)
         setGridSize(initial.gameOptions.gridSize)
+        setScoreSinglePlayer(initial.scoreSinglePlayer)
         setIsRunningGame(false)
+    }
+
+    const incrementScore = () => {
+        setScoreSinglePlayer((singlePlayerStats) => ({
+            ...singlePlayerStats,
+            move: singlePlayerStats.move + 1
+        }))
+    }
+
+    const compareTileValue = (checkedTiles: Tile[]) => {
+        if (checkedTiles[0].id === checkedTiles[1].id) {
+            checkedTiles.forEach((tile) => tile.matched = true)
+            incrementScore()
+        }
+
+        setCheckedTiles([])
     }
 
     const value = {
         gameOptions,
         scoreMultiPlayers: initial.scoreMultiPlayers,
-        scoreSinglePlayer: initial.scoreSinglePlayer,
+        scoreSinglePlayer,
         isRunningGame,
         isMultiPlayersGame,
         tiles,
+        checkedTiles,
+        setCheckedTiles,
         setTheme,
         setPlayers,
         setGridSize,
+        setTiles,
         setIsRunningGame,
         startGame,
+        setScoreSinglePlayer,
         newGame,
-        generateTiles
+        generateTiles,
+        compareTileValue
     }
 
     return <GameContext.Provider value={value}>

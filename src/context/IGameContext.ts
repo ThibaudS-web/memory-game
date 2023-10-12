@@ -20,6 +20,7 @@ interface IGameContext {
     },
 
     tiles: Tile[]
+    checkedTiles: Tile[]
 
     isRunningGame: boolean
     isMultiPlayersGame: boolean,
@@ -27,12 +28,16 @@ interface IGameContext {
     setTheme: React.Dispatch<React.SetStateAction<"numbers" | "icons">>,
     setPlayers: React.Dispatch<React.SetStateAction<"1" | "2" | "3" | "4">>
     setGridSize: React.Dispatch<React.SetStateAction<"small" | "large">>
-
     setIsRunningGame: React.Dispatch<React.SetStateAction<boolean>>
+    setCheckedTiles: React.Dispatch<React.SetStateAction<Tile[]>>
+
+    setScoreSinglePlayer: React.Dispatch<React.SetStateAction<{move: number, timer: number}>>
 
     startGame: () => void
     newGame: () => void
-    generateTiles: () => void
+    generateTiles: () => void,
+    compareTileValue: (tile: Tile[]) => void
+
 
 }
 
