@@ -13,22 +13,22 @@ const Tile = ({ children, tile }: { children: ReactNode, tile: TileType }) => {
     const { gridSize } = gameOptions
 
     const [checked, setIsChecked] = useState(false)
-    const [onSuspend, setOnSuspend] = useState(false)
+    const [isSuspended, setisSuspended] = useState(false)
 
     useEffect(() => {
         if (checkedTiles.length === 2) {
             if (checkedTiles[0].id !== checkedTiles[1].id) {
-                setOnSuspend(true)
+                setisSuspended(true)
                 setTimeout(() => {
                     setIsChecked(false)
-                    setOnSuspend(false)
+                    setisSuspended(false)
                 }, 1000)
             }
         }
     }, [checkedTiles])
 
     const handleClickTile = () => {
-        if (tile.matched || checked || onSuspend) return
+        if (tile.matched || checked || isSuspended) return
         setIsChecked(true)
         setCheckedTiles((prevCheckedTiles) => [...prevCheckedTiles, tile])
     }
@@ -37,7 +37,8 @@ const Tile = ({ children, tile }: { children: ReactNode, tile: TileType }) => {
         <div
             onClick={handleClickTile}
             className={`${selectTileBackground(checked, tile)} ${selectTileSize(gridSize)} flex justify-center items-center font-bold rounded-full text-[#FCFCFC] cursor-pointer `}>
-            {checked || tile.matched ? children : null}
+            {/* {checked || tile.matched ? children : null} */}
+            {children}
         </div>
     )
 }

@@ -5,7 +5,7 @@ import Tiles from "./Tiles"
 const SinglePlayerGame = () => {
   const { scoreSinglePlayer } = useContext(GameContext)
   const { move } = scoreSinglePlayer
-
+  
   return (
     <>
       <Tiles />

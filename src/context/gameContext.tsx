@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react';
 import IGameContext from './IGameContext';
 import { Tile } from "../types/tile"
+import { v4 as uuidv4 } from 'uuid'
 
 const initial: IGameContext = {
     gameOptions: {
@@ -33,6 +34,7 @@ const initial: IGameContext = {
     setIsRunningGame: () => { },
     startGame: () => { },
     newGame: () => { },
+    restartGame: () => { },
     generateTiles: () => { },
     setCheckedTiles: () => { },
     compareTileValue: () => { },
@@ -71,23 +73,41 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }
 
+    const shuffleTiles = (tiles: Tile[]) => {
+        const tilesCopy = [...tiles]
+
+        for (let i = 0; i < tiles.length; i++) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [tilesCopy[i], tilesCopy[j]] = [tilesCopy[j], tilesCopy[i]]
+        }
+
+        return tilesCopy
+    }
+
     const generateTiles = () => {
         if (gridSize === 'large') setnumbersOfTiles(18)
         if (gridSize === 'small') setnumbersOfTiles(8)
 
-        let tiles: Tile[] = []
+        const tiles: Tile[] = []
 
         for (let i = 0; i < numbersOfTiles; i++) {
             tiles.push({
                 id: (i + 1),
+                doublonId: null,
                 content: i + 1,
                 matched: false,
                 checked: false
             })
         }
 
-        let copyTiles = tiles
-        setTiles([...copyTiles, ...tiles])
+        const copyTiles = tiles
+
+        const giveDoublonID = [...copyTiles, ...tiles].map(tile => ({
+            ...tile,
+            doublonId: uuidv4()
+        }))
+
+        setTiles(shuffleTiles(giveDoublonID))
     }
 
     const startGame = () => {
@@ -102,6 +122,16 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         setGridSize(initial.gameOptions.gridSize)
         setScoreSinglePlayer(initial.scoreSinglePlayer)
         setIsRunningGame(false)
+        generateTiles()
+    }
+
+    const restartGame = () => {
+        setCheckedTiles([])
+        generateTiles()
+        setScoreSinglePlayer((singlePlayerStats) => ({
+            ...singlePlayerStats,
+            move: initial.scoreSinglePlayer.move
+        }))
     }
 
     const incrementScore = () => {
@@ -116,7 +146,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
             checkedTiles.forEach((tile) => tile.matched = true)
             incrementScore()
         }
-
+        console.log(checkedTiles)
         setCheckedTiles([])
     }
 
@@ -135,6 +165,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         setTiles,
         setIsRunningGame,
         startGame,
+        restartGame,
         setScoreSinglePlayer,
         newGame,
         generateTiles,

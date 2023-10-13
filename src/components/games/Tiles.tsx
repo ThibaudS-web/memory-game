@@ -7,7 +7,6 @@ const Tiles = () => {
     const {
         gameOptions,
         tiles,
-        generateTiles,
         checkedTiles,
         compareTileValue,
     } = useContext(GameContext)
@@ -15,19 +14,15 @@ const Tiles = () => {
     const { gridSize } = gameOptions
 
     useEffect(() => {
-        generateTiles()
-    }, [])
-
-    useEffect(() => {
         if (checkedTiles.length === 2) {
             compareTileValue(checkedTiles)
         }
     }, [checkedTiles, compareTileValue])
-
+ 
     return (
         <div className={`${selectWrapperSize(gridSize)} flex flex-wrap gap-3.5`}>
-            {tiles.map((tile, index) => (
-                <Tile tile={tile} key={`${index}-${tile.id}`} >
+            {tiles.map((tile) => (
+                <Tile tile={tile} key={`${tile.doublonId}-${tile.id}`} >
                     {tile.content}
                 </Tile>
             ))}

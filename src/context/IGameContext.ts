@@ -35,6 +35,7 @@ interface IGameContext {
 
     startGame: () => void
     newGame: () => void
+    restartGame: () => void
     generateTiles: () => void,
     compareTileValue: (tile: Tile[]) => void
 
