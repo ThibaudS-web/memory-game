@@ -13,19 +13,22 @@ const Tile = ({ children, tile }: { children: ReactNode, tile: TileType }) => {
     const { gridSize } = gameOptions
 
     const [checked, setIsChecked] = useState(false)
+    const [onSuspend, setOnSuspend] = useState(false)
 
     useEffect(() => {
         if (checkedTiles.length === 2) {
             if (checkedTiles[0].id !== checkedTiles[1].id) {
-            setTimeout(() => {
+                setOnSuspend(true)
+                setTimeout(() => {
                     setIsChecked(false)
+                    setOnSuspend(false)
                 }, 1000)
             }
         }
     }, [checkedTiles])
 
     const handleClickTile = () => {
-        if (tile.matched || checked || checkedTiles.length === 2) return
+        if (tile.matched || checked || onSuspend) return
         setIsChecked(true)
         setCheckedTiles((prevCheckedTiles) => [...prevCheckedTiles, tile])
     }

@@ -81,7 +81,8 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
             tiles.push({
                 id: (i + 1),
                 content: i + 1,
-                matched: false
+                matched: false,
+                checked: false
             })
         }
 
