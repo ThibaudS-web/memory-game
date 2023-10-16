@@ -18,7 +18,7 @@ const Tiles = () => {
             compareTileValue(checkedTiles)
         }
     }, [checkedTiles, compareTileValue])
-
+  
     return (
         <div className={`${selectWrapperSize(gridSize)} flex flex-wrap gap-3.5`}>
             {tiles.map((tile) => (
