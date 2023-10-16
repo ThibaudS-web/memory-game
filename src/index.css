@@ -4,23 +4,24 @@
 
 @layer base {
     html {
-        font-family: 'Atkinson Hyperlegible', sans-serif;
+      font-family: 'Atkinson Hyperlegible', sans-serif;
     }
 
     h1 {
-        font-size: 3rem;
+      font-size: 3rem;
     }
 
     h2 {
-        font-size: 2rem;
+      font-size: 2rem;
     }
 
     h3 {
-        font-size: 1.25rem;
+      font-size: 1.25rem;
     }
 
     body {
-        font-size: 1.125rem;
+      font-size: 1.125rem;
+      user-select: none;
     }
 }
 
@@ -40,7 +41,7 @@
     width: 100%;
     font-size: 1.25rem;
     white-space: nowrap;
-    padding: 0.5rem 1.516rem;
+    padding: 0.688rem 1.516rem;
   }
 
   .btn-select:hover{

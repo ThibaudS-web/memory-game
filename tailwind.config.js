@@ -37,11 +37,15 @@ export default {
         'tile-large': '7.375rem',
         'tile-small': '5.125rem',
         'wrapper-tile-small': '33.25rem',
-        'wrapper-tile-large': '35.75rem'
+        'wrapper-tile-large': '35.75rem',
+        'wrapper-score&timer': '15.9375rem'
       },
       height: {
         'tile-large': '7.375rem',
-        'tile-small': '5.125rem'
+        'tile-small': '5.125rem',
+        'wrapper-tile-small': '33.25rem',
+        'wrapper-tile-large': '35.75rem',
+        'wrapper-score&timer': '4.5rem'
       },
       screens: {
         'md': { 'max': '767px' },

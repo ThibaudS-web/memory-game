@@ -3,17 +3,21 @@ import { GameContext } from "../../context/gameContext"
 import { Tile as TileType } from "../../types/tile"
 import { selectTileBackground, selectTileSize } from "../../utils/dynamic-styles/tile"
 
+
 const Tile = ({ children, tile }: { children: ReactNode, tile: TileType }) => {
     const {
         gameOptions,
         setCheckedTiles,
-        checkedTiles
+        checkedTiles,
+        isTimerRunning,
+        setIsTimerRunning,
     } = useContext(GameContext)
 
     const { gridSize } = gameOptions
 
     const [checked, setIsChecked] = useState(false)
     const [isSuspended, setisSuspended] = useState(false)
+
 
     useEffect(() => {
         if (checkedTiles.length === 2) {
@@ -29,6 +33,7 @@ const Tile = ({ children, tile }: { children: ReactNode, tile: TileType }) => {
 
     const handleClickTile = () => {
         if (tile.matched || checked || isSuspended) return
+        if (!isTimerRunning) setIsTimerRunning(true)
         setIsChecked(true)
         setCheckedTiles((prevCheckedTiles) => [...prevCheckedTiles, tile])
     }
@@ -36,7 +41,8 @@ const Tile = ({ children, tile }: { children: ReactNode, tile: TileType }) => {
     return (
         <div
             onClick={handleClickTile}
-            className={`${selectTileBackground(checked, tile)} ${selectTileSize(gridSize)} flex justify-center items-center font-bold rounded-full text-[#FCFCFC] cursor-pointer `}>
+            className={`${selectTileBackground(checked, tile)} ${selectTileSize(gridSize)} flex justify-center items-center font-bold rounded-full text-[#FCFCFC] cursor-pointer`}
+        >
             {/* {checked || tile.matched ? children : null} */}
             {children}
         </div>

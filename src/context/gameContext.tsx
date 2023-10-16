@@ -26,19 +26,24 @@ const initial: IGameContext = {
     checkedTiles: [],
     isRunningGame: false,
     isMultiPlayersGame: false,
-
+    isTimerRunning: false,
+    numbersOfTiles: 8,
+    
     setTheme: () => { },
     setPlayers: () => { },
     setGridSize: () => { },
 
     setIsRunningGame: () => { },
+    setIsTimerRunning: () => { },
     startGame: () => { },
     newGame: () => { },
     restartGame: () => { },
     generateTiles: () => { },
     setCheckedTiles: () => { },
     compareTileValue: () => { },
-    setScoreSinglePlayer: () => { }
+    setScoreSinglePlayer: () => { },
+    stopTimer: () => { },
+    startTimer: () => { }
 }
 
 export const GameContext = createContext(initial);
@@ -56,9 +61,10 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [tiles, setTiles] = useState<Tile[]>([])
     const [checkedTiles, setCheckedTiles] = useState<Tile[]>([])
 
-    const [numbersOfTiles, setnumbersOfTiles] = useState(8)
+    const [numbersOfTiles, setnumbersOfTiles] = useState<8 | 18>(8)
 
     const [scoreSinglePlayer, setScoreSinglePlayer] = useState(initial.scoreSinglePlayer)
+    const [isTimerRunning, setIsTimerRunning] = useState(false)
 
     const gameOptions = {
         theme,
@@ -122,16 +128,15 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         setGridSize(initial.gameOptions.gridSize)
         setScoreSinglePlayer(initial.scoreSinglePlayer)
         setIsRunningGame(false)
-        generateTiles()
+        setIsTimerRunning(false)
+        stopTimer()
     }
 
     const restartGame = () => {
         setCheckedTiles([])
         generateTiles()
-        setScoreSinglePlayer((singlePlayerStats) => ({
-            ...singlePlayerStats,
-            move: initial.scoreSinglePlayer.move
-        }))
+        setScoreSinglePlayer(initial.scoreSinglePlayer)
+        setIsTimerRunning(false)
     }
 
     const incrementScore = () => {
@@ -139,6 +144,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
             ...singlePlayerStats,
             move: singlePlayerStats.move + 1
         }))
+        console.log(scoreSinglePlayer.move)
     }
 
     const compareTileValue = (checkedTiles: Tile[]) => {
@@ -146,8 +152,24 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
             checkedTiles.forEach((tile) => tile.matched = true)
             incrementScore()
         }
-        console.log(checkedTiles)
+
         setCheckedTiles([])
+    }
+    const [intervalID, setIntervalID] = useState(0)
+
+    const startTimer = () => {
+        const ID = setInterval(() => {
+            setScoreSinglePlayer((singlePlayerStats) => ({
+                ...singlePlayerStats,
+                timer: singlePlayerStats.timer + 1
+            }))
+        }, 1000)
+
+        setIntervalID(ID)
+    }
+
+    const stopTimer = () => {
+        clearInterval(intervalID)
     }
 
     const value = {
@@ -158,6 +180,9 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         isMultiPlayersGame,
         tiles,
         checkedTiles,
+        isTimerRunning,
+        numbersOfTiles,
+        setIsTimerRunning,
         setCheckedTiles,
         setTheme,
         setPlayers,
@@ -169,7 +194,9 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         setScoreSinglePlayer,
         newGame,
         generateTiles,
-        compareTileValue
+        compareTileValue,
+        startTimer,
+        stopTimer
     }
 
     return <GameContext.Provider value={value}>
