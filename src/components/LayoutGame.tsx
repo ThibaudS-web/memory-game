@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react"
-import Button from "../Button"
-import Logo from "../svg/Logo"
-import { GameContext } from "../../context/gameContext"
+import Button from "./Button"
+import Logo from "./svg/Logo"
+import { GameContext } from "../context/gameContext"
 import SinglePlayerGame from "./SinglePlayerGame"
 import MultiplayersGame from "./MultiplayersGame"
+import ModalSinglePlayer from "./ModalSinglePlayer"
 
 const LayoutGame = () => {
     const {
@@ -13,7 +14,9 @@ const LayoutGame = () => {
         generateTiles,
         scoreSinglePlayer,
         setIsTimerRunning,
-        numbersOfTiles
+        isGameOver,
+        setIsGameOver,
+        tiles
     } = useContext(GameContext)
 
     const { move } = scoreSinglePlayer
@@ -23,14 +26,18 @@ const LayoutGame = () => {
     }, [])
 
     useEffect(() => {
-        if (move === numbersOfTiles) {
+        const allTilesAreMatched = tiles.every(tile => tile.matched)
+
+        if (allTilesAreMatched) {
             setIsTimerRunning(false)
+            setIsGameOver(true)
         }
     }, [move])
 
 
     return (
         <>
+            {isGameOver ? <ModalSinglePlayer /> : null}
             <div className="page-wrapper">
                 <header className="w-full flex justify-between items-center my-16">
                     <Logo fill="#152938" />

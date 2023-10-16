@@ -2,7 +2,7 @@ import { useContext } from "react"
 import Menu from "./components/Menu"
 import "./index.css"
 import { GameContext } from "./context/gameContext"
-import LayoutGame from "./components/games/LayoutGame"
+import LayoutGame from "./components/LayoutGame"
 
 function App() {
   const { isRunningGame } = useContext(GameContext)
@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       {isRunningGame ?
-        <div className="bg-btn-text-color w-screen h-screen flex justify-center">
+        <div className= "bg-btn-text-color w-screen h-screen flex justify-center absolute z-0">
           <LayoutGame />
         </div>
         :

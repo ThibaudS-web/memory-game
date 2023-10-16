@@ -26,6 +26,7 @@ interface IGameContext {
     isRunningGame: boolean
     isMultiPlayersGame: boolean
     isTimerRunning: boolean
+    isGameOver: boolean
 
     setTheme: React.Dispatch<React.SetStateAction<"numbers" | "icons">>
     setPlayers: React.Dispatch<React.SetStateAction<"1" | "2" | "3" | "4">>
@@ -34,6 +35,7 @@ interface IGameContext {
     setCheckedTiles: React.Dispatch<React.SetStateAction<Tile[]>>
     setScoreSinglePlayer: React.Dispatch<React.SetStateAction<{ move: number, timer: number }>>
     setIsTimerRunning: React.Dispatch<React.SetStateAction<boolean>>
+    setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>
     startGame: () => void
     newGame: () => void
     restartGame: () => void

@@ -1,4 +1,4 @@
-import { GameContext } from "../../context/gameContext"
+import { GameContext } from "../context/gameContext"
 import { useContext } from 'react'
 import Tiles from "./Tiles"
 import Timer from "./Timer"
@@ -20,7 +20,6 @@ const SinglePlayerGame = () => {
           </span>
         </div>
       </div>
-
     </>
   )
 }

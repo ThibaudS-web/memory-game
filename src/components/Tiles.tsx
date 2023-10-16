@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
-import { GameContext } from "../../context/gameContext"
+import { GameContext } from "../context/gameContext"
 import Tile from './Tile'
-import { selectWrapperSize } from '../../utils/dynamic-styles/tiles'
+import { selectWrapperSize } from '../utils/dynamic-styles/tiles'
 
 const Tiles = () => {
     const {
@@ -18,7 +18,7 @@ const Tiles = () => {
             compareTileValue(checkedTiles)
         }
     }, [checkedTiles, compareTileValue])
-  
+
     return (
         <div className={`${selectWrapperSize(gridSize)} flex flex-wrap gap-3.5`}>
             {tiles.map((tile) => (

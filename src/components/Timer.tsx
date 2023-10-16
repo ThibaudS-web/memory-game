@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react"
-import { GameContext } from "../../context/gameContext"
-import { convertSecondsToMinutes } from "../../utils/convertSecondsToMinutes"
+import { GameContext } from "../context/gameContext"
+import { convertSecondsToMinutes } from "../utils/convertSecondsToMinutes"
 
 const Timer = () => {
     const {

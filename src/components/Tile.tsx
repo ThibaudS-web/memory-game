@@ -1,7 +1,7 @@
 import { ReactNode, useContext, useState, useEffect } from "react"
-import { GameContext } from "../../context/gameContext"
-import { Tile as TileType } from "../../types/tile"
-import { selectTileBackground, selectTileSize } from "../../utils/dynamic-styles/tile"
+import { GameContext } from "../context/gameContext"
+import { Tile as TileType } from "../types/tile"
+import { selectTileBackground, selectTileSize } from "../utils/dynamic-styles/tile"
 
 
 const Tile = ({ children, tile }: { children: ReactNode, tile: TileType }) => {
@@ -43,8 +43,7 @@ const Tile = ({ children, tile }: { children: ReactNode, tile: TileType }) => {
             onClick={handleClickTile}
             className={`${selectTileBackground(checked, tile)} ${selectTileSize(gridSize)} flex justify-center items-center font-bold rounded-full text-[#FCFCFC] cursor-pointer`}
         >
-            {/* {checked || tile.matched ? children : null} */}
-            {children}
+            {checked || tile.matched ? children : null}
         </div>
     )
 }

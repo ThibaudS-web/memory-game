@@ -28,13 +28,15 @@ const initial: IGameContext = {
     isMultiPlayersGame: false,
     isTimerRunning: false,
     numbersOfTiles: 8,
-    
+    isGameOver: false,
+
     setTheme: () => { },
     setPlayers: () => { },
     setGridSize: () => { },
 
     setIsRunningGame: () => { },
     setIsTimerRunning: () => { },
+    setIsGameOver: () => { },
     startGame: () => { },
     newGame: () => { },
     restartGame: () => { },
@@ -64,8 +66,9 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [numbersOfTiles, setnumbersOfTiles] = useState<8 | 18>(8)
 
     const [scoreSinglePlayer, setScoreSinglePlayer] = useState(initial.scoreSinglePlayer)
-    const [isTimerRunning, setIsTimerRunning] = useState(false)
-
+    const [isTimerRunning, setIsTimerRunning] = useState(initial.isTimerRunning)
+    const [intervalID, setIntervalID] = useState(0)
+    const [isGameOver, setIsGameOver] = useState(initial.isGameOver)
     const gameOptions = {
         theme,
         players,
@@ -130,6 +133,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         setIsRunningGame(false)
         setIsTimerRunning(false)
         stopTimer()
+        setIsGameOver(false)
     }
 
     const restartGame = () => {
@@ -137,6 +141,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         generateTiles()
         setScoreSinglePlayer(initial.scoreSinglePlayer)
         setIsTimerRunning(false)
+        setIsGameOver(false)
     }
 
     const incrementScore = () => {
@@ -149,13 +154,12 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
 
     const compareTileValue = (checkedTiles: Tile[]) => {
         if (checkedTiles[0].id === checkedTiles[1].id) {
-            checkedTiles.forEach((tile) => tile.matched = true)
-            incrementScore()
+            checkedTiles.forEach((tile) => tile.matched = true) 
         }
-
+        
+        incrementScore()
         setCheckedTiles([])
     }
-    const [intervalID, setIntervalID] = useState(0)
 
     const startTimer = () => {
         const ID = setInterval(() => {
@@ -182,6 +186,8 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         checkedTiles,
         isTimerRunning,
         numbersOfTiles,
+        isGameOver,
+        setIsGameOver,
         setIsTimerRunning,
         setCheckedTiles,
         setTheme,

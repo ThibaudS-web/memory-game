@@ -24,8 +24,8 @@ export default {
         'text-primary': '#7191A5'
       },
       fontSize: {
-        '3xl': '2em',
-        'paragraph-sm': '0.9375em',
+        '3xl': '2rem',
+        'paragraph-sm': '0.9375rem',
         'tile-small': '2.75rem',
         'tile-large': '3.5rem'
       },
@@ -51,6 +51,12 @@ export default {
         'md': { 'max': '767px' },
         'sm': { 'max': '500px' },
         'xsm': { 'max': '360px' },
+      },
+      backgroundColor: {
+        'black': 'rgba(0, 0, 0, 0.6)'
+      },
+      borderRadius: {
+        '3xl': '1.25rem'
       }
     },
 
