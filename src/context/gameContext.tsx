@@ -30,7 +30,7 @@ const initial: IGameContext = {
     isMultiPlayersGame: false,
     isTimerRunning: false,
     numbersOfTiles: 8,
-    isGameOver: true,
+    isGameOver: false,
 
     setTheme: () => { },
     setPlayers: () => { },
@@ -78,7 +78,9 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     const selectSingleOrMultiPlayers = () => {
-        if (players === "1") return
+        if (players === "1") {
+            setIsMultiPlayersGame(false)
+        }
         else {
             setIsMultiPlayersGame(true)
         }
@@ -122,6 +124,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         generateTiles()
         selectSingleOrMultiPlayers()
         setIsRunningGame(true)
+        console.log(players)
     }
 
     const newGame = () => {
