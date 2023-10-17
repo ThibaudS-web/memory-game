@@ -110,7 +110,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
 
         const copyTiles = tiles
 
-        const giveDoublonID = [...copyTiles, ...tiles].map(tile => ({
+        const giveDoublonID: Tile[] = [...copyTiles, ...tiles].map(tile => ({
             ...tile,
             doublonId: uuidv4()
         }))
