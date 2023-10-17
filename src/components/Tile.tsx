@@ -18,7 +18,6 @@ const Tile = ({ children, tile }: { children: ReactNode, tile: TileType }) => {
     const [checked, setIsChecked] = useState(false)
     const [isSuspended, setisSuspended] = useState(false)
 
-
     useEffect(() => {
         if (checkedTiles.length === 2) {
             if (checkedTiles[0].id !== checkedTiles[1].id) {

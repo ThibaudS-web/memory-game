@@ -2,6 +2,8 @@ import { createContext, useState } from 'react';
 import IGameContext from './IGameContext';
 import { Tile } from "../types/tile"
 import { v4 as uuidv4 } from 'uuid'
+import { iconComponents } from '../utils/icons';
+import { shuffleArray } from '../utils/shuffleArray';
 
 const initial: IGameContext = {
     gameOptions: {
@@ -61,7 +63,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [isRunningGame, setIsRunningGame] = useState(initial.isRunningGame)
 
     const [tiles, setTiles] = useState<Tile[]>([])
-    const [checkedTiles, setCheckedTiles] = useState<Tile[]>([])
+    const [checkedTiles, setCheckedTiles] = useState<Tile[]>(initial.tiles)
 
     const [numbersOfTiles, setnumbersOfTiles] = useState<8 | 18>(8)
 
@@ -82,28 +84,25 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }
 
-    const shuffleTiles = (tiles: Tile[]) => {
-        const tilesCopy = [...tiles]
-
-        for (let i = 0; i < tiles.length; i++) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [tilesCopy[i], tilesCopy[j]] = [tilesCopy[j], tilesCopy[i]]
-        }
-
-        return tilesCopy
-    }
-
     const generateTiles = () => {
         if (gridSize === 'large') setnumbersOfTiles(18)
         if (gridSize === 'small') setnumbersOfTiles(8)
 
+        const icons: JSX.Element[] = shuffleArray(iconComponents)
         const tiles: Tile[] = []
+
+        const contentTile = (index: number) => {
+            return theme === 'numbers' ?
+                index + 1
+                :
+                icons[index]
+        }
 
         for (let i = 0; i < numbersOfTiles; i++) {
             tiles.push({
                 id: (i + 1),
                 doublonId: null,
-                content: i + 1,
+                content: contentTile(i),
                 matched: false,
                 checked: false
             })
@@ -116,7 +115,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
             doublonId: uuidv4()
         }))
 
-        setTiles(shuffleTiles(giveDoublonID))
+        setTiles(shuffleArray(giveDoublonID))
     }
 
     const startGame = () => {
@@ -149,14 +148,13 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
             ...singlePlayerStats,
             move: singlePlayerStats.move + 1
         }))
-        console.log(scoreSinglePlayer.move)
     }
 
     const compareTileValue = (checkedTiles: Tile[]) => {
         if (checkedTiles[0].id === checkedTiles[1].id) {
-            checkedTiles.forEach((tile) => tile.matched = true) 
+            checkedTiles.forEach((tile) => tile.matched = true)
         }
-        
+
         incrementScore()
         setCheckedTiles([])
     }

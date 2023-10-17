@@ -1,7 +1,7 @@
 export type Tile = {
     id: number,
     doublonId: string | null,
-    content: number,
+    content: React.ReactNode,
     matched: boolean,
     checked: boolean
 }
