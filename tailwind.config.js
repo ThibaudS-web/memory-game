@@ -38,14 +38,18 @@ export default {
         'tile-small': '5.125rem',
         'wrapper-tile-small': '33.25rem',
         'wrapper-tile-large': '35.75rem',
-        'wrapper-score&timer': '15.9375rem'
+        'wrapper-score&timer': '15.9375rem',
+        'modal': '40.875rem',
+        'modal-tablet': '91.345%',
+        
       },
       height: {
         'tile-large': '7.375rem',
         'tile-small': '5.125rem',
         'wrapper-tile-small': '33.25rem',
         'wrapper-tile-large': '35.75rem',
-        'wrapper-score&timer': '4.5rem'
+        'wrapper-score&timer': '4.5rem',
+        'modal': '31.875rem'
       },
       screens: {
         'md': { 'max': '767px' },
