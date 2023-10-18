@@ -124,7 +124,6 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         generateTiles()
         selectSingleOrMultiPlayers()
         setIsRunningGame(true)
-        console.log(players)
     }
 
     const newGame = () => {
