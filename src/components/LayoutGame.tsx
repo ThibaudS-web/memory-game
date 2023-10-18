@@ -3,6 +3,7 @@ import { GameContext } from "../context/gameContext"
 import ModalSinglePlayer from "./ModalSinglePlayer"
 import Header from "./Header"
 import MainContent from "./MainContent"
+import { setBodyBackgroundClass } from "../utils/dynamic-styles/body"
 
 const LayoutGame = () => {
     const {
@@ -15,9 +16,11 @@ const LayoutGame = () => {
     } = useContext(GameContext)
 
     const { move } = scoreSinglePlayer
+    
+    setBodyBackgroundClass("game")
 
     useEffect(() => {
-        generateTiles() 
+        generateTiles()
     }, [])
 
     useEffect(() => {

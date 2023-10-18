@@ -10,11 +10,11 @@ function App() {
   return (
     <>
       {isRunningGame ?
-        <div className= "bg-btn-text-color w-screen h-screen flex justify-center absolute z-0">
+        <div className="w-screen h-screen flex justify-center absolute z-0">
           <LayoutGame />
         </div>
         :
-        <main className="bg-bg-startmenu w-screen h-screen flex items-center justify-center ">
+        <main className="w-screen h-screen flex items-center justify-center">
           <Menu />
         </main>}
 

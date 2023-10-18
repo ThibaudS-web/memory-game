@@ -2,12 +2,15 @@ import { useContext } from "react"
 import Button from "./Button"
 import Logo from "./svg/Logo"
 import { GameContext } from "../context/gameContext"
+import { setBodyBackgroundClass } from "../utils/dynamic-styles/body"
 
 const Menu = () => {
 
   const { setTheme, setPlayers, setGridSize, startGame, gameOptions } = useContext(GameContext)
 
   const { theme, players, gridSize } = gameOptions
+
+  setBodyBackgroundClass("menu")
 
   const activeVariants = (isActiveTheme: boolean) => {
     return isActiveTheme ? 'bg-menu-selection-active' : 'bg-menu-selection-idle'

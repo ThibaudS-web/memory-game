@@ -7,10 +7,7 @@ import MenuModal from "./MenuModal"
 
 
 const Header = () => {
-    const {
-        newGame,
-        restartGame
-    } = useContext(GameContext)
+    const { newGame, restartGame } = useContext(GameContext)
 
     const [isMenuModalDisplayed, setIsMenuModalDisplayed] = useState(false)
 
