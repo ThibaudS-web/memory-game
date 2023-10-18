@@ -6,7 +6,8 @@ export const selectTileBackground = (checked: boolean, tile: Tile) => {
     if (tile.matched) return "bg-tile-bg-matched"
 }
 
+
 export const selectTileSize = (gridSize: "small" | "large") => {
-    if (gridSize === "small") return "w-tile-large h-tile-large text-tile-large"
-    if (gridSize === "large") return "w-tile-small h-tile-small text-tile-small"
+    if (gridSize === "small") return "w-tile-large h-tile-large text-tile-large smartphone:text-tile-large-smartphone"
+    if (gridSize === "large") return "w-tile-small h-tile-small text-tile-small smartphone:text-2xl"
 }

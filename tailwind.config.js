@@ -27,7 +27,8 @@ export default {
         '3xl': '2rem',
         'paragraph-sm': '0.9375rem',
         'tile-small': '2.75rem',
-        'tile-large': '3.5rem'
+        'tile-large': '3.5rem',
+        'tile-large-smartphone': '2.5rem'
       },
       maxWidth: {
         '2xl': '654px'
@@ -41,7 +42,8 @@ export default {
         'wrapper-score&timer': '15.9375rem',
         'modal': '40.875rem',
         'modal-tablet': '91.345%',
-        
+        'tile-smartphone': '4.53125rem',
+        'tile-xsm': '4rem'
       },
       height: {
         'tile-large': '7.375rem',
@@ -49,12 +51,20 @@ export default {
         'wrapper-tile-small': '33.25rem',
         'wrapper-tile-large': '35.75rem',
         'wrapper-score&timer': '4.5rem',
-        'modal': '31.875rem'
+        'modal': '31.875rem',
+        'tile-smartphone': '4.53125rem',
+        'tile-xsm': '4rem'
+      },
+      padding: {
+        'header&footer': '2.375rem'
       },
       screens: {
+        'tablet': { 'max': '768px' },
         'md': { 'max': '767px' },
+        'smartphone': { 'max': '600px' },
         'sm': { 'max': '500px' },
         'xsm': { 'max': '360px' },
+        'xxsm': { 'max': '300px' }
       },
       backgroundColor: {
         'black': 'rgba(0, 0, 0, 0.6)'
