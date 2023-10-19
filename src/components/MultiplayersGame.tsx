@@ -1,6 +1,13 @@
+import Tiles from "./Tiles"
+import PlayersScoreWrapper from "./PlayersScoreWrapper"
+
 const MultiplayersGame = () => {
+
   return (
-    <div>MultiplayersGame</div>
+    <>
+      <Tiles />
+      <PlayersScoreWrapper />
+    </>
   )
 }
 

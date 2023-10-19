@@ -1,23 +1,19 @@
-import { createContext, useState } from 'react';
-import IGameContext from './IGameContext';
+import { createContext, useState } from 'react'
+import IGameContext from './IGameContext'
 import { Tile } from "../types/tile"
 import { v4 as uuidv4 } from 'uuid'
-import { iconComponents } from '../utils/icons';
-import { shuffleArray } from '../utils/shuffleArray';
+import { iconComponents } from '../utils/icons'
+import { shuffleArray } from '../utils/shuffleArray'
+import { Player } from '../types/MultiPlayers'
 
 const initial: IGameContext = {
     gameOptions: {
         theme: 'numbers',
-        players: '1',
+        players: '4',
         gridSize: 'small'
     },
 
-    scoreMultiPlayers: {
-        playerOne: 0,
-        playerTwo: 0,
-        playerThree: 0,
-        playerFour: 0
-    },
+    scoreMultiPlayers: null,
 
     scoreSinglePlayer: {
         move: 0,
@@ -68,6 +64,8 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [numbersOfTiles, setnumbersOfTiles] = useState<8 | 18>(8)
 
     const [scoreSinglePlayer, setScoreSinglePlayer] = useState(initial.scoreSinglePlayer)
+    const [scoreMultiPlayers, setScoreMultiPlayers] = useState(initial.scoreMultiPlayers)
+
     const [isTimerRunning, setIsTimerRunning] = useState(initial.isTimerRunning)
     const [intervalID, setIntervalID] = useState(0)
     const [isGameOver, setIsGameOver] = useState(initial.isGameOver)
@@ -78,12 +76,26 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     const selectSingleOrMultiPlayers = () => {
+        const playersNumber = parseInt(players)
+        const playersInGame: Player[] = []
+
         if (players === "1") {
             setIsMultiPlayersGame(false)
         }
         else {
             setIsMultiPlayersGame(true)
+
+            for (let i = 0; i < playersNumber; i++) {
+                playersInGame.push({
+                    score: 0,
+                    currentTurn: i === 0
+                })
+            }
+
+            setScoreMultiPlayers(playersInGame)
         }
+
+
     }
 
     const generateTiles = () => {
@@ -133,8 +145,8 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         setScoreSinglePlayer(initial.scoreSinglePlayer)
         setIsRunningGame(false)
         setIsTimerRunning(false)
-        stopTimer()
         setIsGameOver(false)
+        stopTimer()
     }
 
     const restartGame = () => {
@@ -145,21 +157,71 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         setIsGameOver(false)
     }
 
-    const incrementScore = () => {
+    const incrementScoreSinglePlayer = () => {
         setScoreSinglePlayer((singlePlayerStats) => ({
             ...singlePlayerStats,
             move: singlePlayerStats.move + 1
         }))
     }
 
+    const incrementScoreMultiPlayer = () => {
+        if (scoreMultiPlayers !== null) {
+            const updateScoreMultiplayer = scoreMultiPlayers.map((player) => {
+                if (player.currentTurn) {
+                    return {
+                        ...player,
+                        score: player.score + 1
+                    }
+                } else return player
+            })
+
+            setScoreMultiPlayers([...updateScoreMultiplayer])
+        }
+    }
+
+    const currentTurnToTheNextPlayer = () => {
+        if (scoreMultiPlayers !== null) {
+            const currentPlayer = scoreMultiPlayers.find((player) => player.currentTurn)
+            const currentIndexPlayer = scoreMultiPlayers.findIndex((player) => player.currentTurn)
+            const nextIndexPlayer = (currentIndexPlayer + 1) % scoreMultiPlayers.length
+
+            if (currentPlayer !== undefined) {
+                currentPlayer.currentTurn = false
+            }
+
+            scoreMultiPlayers[nextIndexPlayer].currentTurn = true
+
+            setScoreMultiPlayers([...scoreMultiPlayers])
+        }
+    }
+
     const compareTileValue = (checkedTiles: Tile[]) => {
-        if (checkedTiles[0].id === checkedTiles[1].id) {
-            checkedTiles.forEach((tile) => tile.matched = true)
+        const areEqualTiles = checkedTiles[0].id === checkedTiles[1].id
+        const isSinglePlayer = players === "1"
+        const isMultiPlayer = players !== "1"
+
+        if (isSinglePlayer) {
+            if (areEqualTiles) {
+                checkedTiles.forEach((tile) => tile.matched = true)
+            }
+            incrementScoreSinglePlayer()
+            setCheckedTiles([])
         }
 
-        incrementScore()
+        if (isMultiPlayer) {
+            if (areEqualTiles) {
+                checkedTiles.forEach((tile) => tile.matched = true)
+                incrementScoreMultiPlayer()
+            } else {
+                setTimeout(() => {
+                    currentTurnToTheNextPlayer()
+                }, 1000)
+            }
+        }
+
         setCheckedTiles([])
     }
+
 
     const startTimer = () => {
         const ID = setInterval(() => {
@@ -178,7 +240,6 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
 
     const value = {
         gameOptions,
-        scoreMultiPlayers: initial.scoreMultiPlayers,
         scoreSinglePlayer,
         isRunningGame,
         isMultiPlayersGame,
@@ -187,6 +248,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         isTimerRunning,
         numbersOfTiles,
         isGameOver,
+        scoreMultiPlayers,
         setIsGameOver,
         setIsTimerRunning,
         setCheckedTiles,

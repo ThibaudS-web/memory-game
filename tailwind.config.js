@@ -58,6 +58,9 @@ export default {
       padding: {
         'header&footer': '2.375rem'
       },
+      letterSpacing: {
+        widest: '.2rem'
+      },
       screens: {
         'tablet': { 'max': '768px' },
         'md': { 'max': '767px' },

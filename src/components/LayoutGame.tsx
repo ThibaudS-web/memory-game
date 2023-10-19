@@ -12,11 +12,12 @@ const LayoutGame = () => {
         setIsTimerRunning,
         isGameOver,
         setIsGameOver,
-        tiles
+        tiles,
+        scoreMultiPlayers
     } = useContext(GameContext)
 
     const { move } = scoreSinglePlayer
-    
+
     setBodyBackgroundClass("game")
 
     useEffect(() => {
@@ -25,12 +26,12 @@ const LayoutGame = () => {
 
     useEffect(() => {
         const allTilesAreMatched = tiles.every(tile => tile.matched)
-
+        console.log(scoreMultiPlayers)
         if (allTilesAreMatched) {
             setIsTimerRunning(false)
             setIsGameOver(true)
         }
-    }, [move])
+    }, [move, scoreMultiPlayers])
 
     return (
         <>

@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       {isRunningGame ?
-        <div className="w-screen h-screen flex justify-center absolute z-0">
+        <div className="w-screen h-screen flex justify-center  absolute z-0">
           <LayoutGame />
         </div>
         :

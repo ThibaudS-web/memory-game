@@ -1,3 +1,4 @@
+import { Player } from "../types/MultiPlayers"
 import { Tile } from "../types/tile"
 
 interface IGameContext {
@@ -7,12 +8,7 @@ interface IGameContext {
         gridSize: "small" | "large"
     }
 
-    scoreMultiPlayers: {
-        playerOne: number
-        playerTwo: number
-        playerThree: number
-        playerFour: number
-    }
+    scoreMultiPlayers: Player[] | null
 
     scoreSinglePlayer: {
         move: number
