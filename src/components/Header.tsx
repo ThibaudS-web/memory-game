@@ -13,11 +13,11 @@ const Header = () => {
 
     const windowWidth = useWidthScreen()
     const isMenuButtonDisplayed = windowWidth <= 600
-
+    
     return (
         <>
             {isMenuModalDisplayed ? <MenuModal handleClick={() => setIsMenuModalDisplayed(false)} /> : null}
-            <header className="w-full flex justify-between items-center my-16 px-header&footer tablet:mb-0 tablet:mt-10 smartphone:px-0 smartphone:w-[90%] xxsm:w-[95%] ">
+            <header className="w-full flex justify-between items-center my-16 px-header&footer tablet:mb-0 tablet:mt-10 smartphone:mx-auto smartphone:px-0 smartphone:w-[90%] xxsm:w-[95%] ">
                 <Logo className="smartphone:scale-75 origin-left" fill="#152938" />
                 {isMenuButtonDisplayed ?
                     (

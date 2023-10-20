@@ -7,7 +7,7 @@ const MainContent = () => {
     const { isMultiPlayersGame } = useContext(GameContext)
 
     return (
-        <main className="w-full flex flex-col items-center smartphone:w-[90%] xxsm:w-full">
+        <main className="w-full flex flex-col items-center smartphone:w-[90%] smartphone:m-auto xxsm:w-full">
             {isMultiPlayersGame ?
                 <MultiplayersGame /> : <SinglePlayerGame />
             }

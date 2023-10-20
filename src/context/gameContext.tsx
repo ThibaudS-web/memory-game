@@ -9,7 +9,7 @@ import { Player } from '../types/MultiPlayers'
 const initial: IGameContext = {
     gameOptions: {
         theme: 'numbers',
-        players: '4',
+        players: '1',
         gridSize: 'small'
     },
 
@@ -87,6 +87,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
 
             for (let i = 0; i < playersNumber; i++) {
                 playersInGame.push({
+                    name: `Player ${i + 1}`,
                     score: 0,
                     currentTurn: i === 0
                 })
@@ -94,8 +95,6 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
 
             setScoreMultiPlayers(playersInGame)
         }
-
-
     }
 
     const generateTiles = () => {
@@ -153,6 +152,7 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
         setCheckedTiles([])
         generateTiles()
         setScoreSinglePlayer(initial.scoreSinglePlayer)
+        selectSingleOrMultiPlayers()
         setIsTimerRunning(false)
         setIsGameOver(false)
     }
@@ -221,7 +221,6 @@ const GameContextProvider = ({ children }: { children: React.ReactNode }) => {
 
         setCheckedTiles([])
     }
-
 
     const startTimer = () => {
         const ID = setInterval(() => {
