@@ -48,10 +48,6 @@
     padding: 0.688rem 1.516rem; 
   }
 
-  .btn-select:hover{
-    background-color: #6395B8;
-  }
-
   .page-wrapper {
     width: calc(1100px + var(--padding-header) * 2);
     max-width: 100%;
@@ -106,4 +102,13 @@
     }
   }
 
+  @media (hover: hover) and (pointer: fine) {
+    .btn-select{
+      background-color: #6395B8;
+    }
+
+    .tile-hover {
+       background-color:#6395B8;
+    }
+  }   
 }

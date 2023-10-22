@@ -2,7 +2,7 @@ import { Tile } from "../../types/tile"
 
 export const selectTileBackground = (checked: boolean, tile: Tile) => {
     if (checked && !tile.matched) return "bg-btn-primary"
-    if (!checked && !tile.matched) return "bg-tile-bg-notchecked hover:bg-title-hover"
+    if (!checked && !tile.matched) return "bg-tile-bg-notchecked hover:tile-hover"
     if (tile.matched) return "bg-tile-bg-matched"
 }
 

@@ -21,7 +21,7 @@ const Header = () => {
                 <Logo className="smartphone:scale-75 origin-left" fill="#152938" />
                 {isMenuButtonDisplayed ?
                     (
-                        <Button className="rounded-full font-bold p-0 bg-btn-primary text-[#FCFCFC]  hover:bg-btn-secondary-hover text-base smartphone:w-20 smartphone:h-10" handleClick={() => setIsMenuModalDisplayed(true)}>
+                        <Button className="rounded-full font-bold p-0 bg-btn-primary text-[#FCFCFC] text-base smartphone:w-20 smartphone:h-10" handleClick={() => setIsMenuModalDisplayed(true)}>
                             Menu
                         </Button>
                     )
