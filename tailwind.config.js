@@ -27,8 +27,10 @@ export default {
         '3xl': '2rem',
         'paragraph-sm': '0.9375rem',
         'tile-small': '2.75rem',
+        'tile-small-smartphone': '1.5rem',
         'tile-large': '3.5rem',
         'tile-large-smartphone': '2.5rem'
+        
       },
       maxWidth: {
         '2xl': '654px'

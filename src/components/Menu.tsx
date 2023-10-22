@@ -2,15 +2,11 @@ import { useContext } from "react"
 import Button from "./Button"
 import Logo from "./svg/Logo"
 import { GameContext } from "../context/gameContext"
-import { setBodyBackgroundClass } from "../utils/dynamic-styles/body"
 
 const Menu = () => {
-
   const { setTheme, setPlayers, setGridSize, startGame, gameOptions } = useContext(GameContext)
 
   const { theme, players, gridSize } = gameOptions
-
-  setBodyBackgroundClass("menu")
 
   const activeVariants = (isActiveTheme: boolean) => {
     return isActiveTheme ? 'bg-menu-selection-active' : 'bg-menu-selection-idle'
@@ -18,7 +14,7 @@ const Menu = () => {
 
   return (
     <>
-      <main className="w-screen h-screen flex justify-center">
+      <main className="w-screen h-screen flex justify-center bg-bg-startmenu">
         <div className="flex self-center flex-col gap-20 w-full max-w-2xl sm:w-6/7 md:w-6/7 ">
           <Logo className="self-center" fill="#FCFCFC" />
           <div className=" bg-menu flex flex-col px-14 py-[3.375rem] md:p-6 rounded-[1.4rem] top-2/4 gap-9 sm:gap-5  ">

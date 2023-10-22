@@ -20,7 +20,7 @@ const Tiles = () => {
     }, [checkedTiles, compareTileValue])
 
     return (
-        <div className={`${selectWrapperSize(gridSize)} smartphone:items-center smartphone:justify-items-center gap-2.5 smartphone:gap-3 smartphone:max-w-[327px] smartphone:h-80  mt-28 tablet:mt-40 smartphone:mt-20 smartphone:w-full xsm:gap-0 xxsm:w-[95%] xxsm:mt-14`}>
+        <div className={`${selectWrapperSize(gridSize)} smartphone:items-center smartphone:justify-items-center sm:gap-0 gap-2.5 smartphone:max-w-[327px] smartphone:h-80 mt-28 tablet:mt-40 smartphone:mt-20 smartphone:w-full xxsm:w-[95%] xxsm:mt-14`}>
             {tiles.map((tile) => (
                 <Tile tile={tile} key={`${tile.doublonId}-${tile.id}`} >
                     {tile.content}

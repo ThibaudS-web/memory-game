@@ -1,20 +1,6 @@
-const PlayerLeaderBoard = ({ label, score, isWinner }: { label: string, score: number, isWinner: boolean }) => {
+import { winnerStyles } from "../utils/dynamic-styles/PlayerScoreLeaderBoard"
 
-    const winnerStyles = (isWinner: boolean, isWrapper?: boolean) => {
-        if (isWrapper) {
-            if (isWinner) {
-                return "bg-bg-startmenu text-btn-text-color"
-            } else {
-                return "bg-btn-secondary text-text-primary"
-            }
-        } else {
-            if (isWinner) {
-                return "text-btn-text-color"
-            } else {
-                return "text-tile-bg-notchecked"
-            }
-        }
-    }
+const PlayerLeaderBoard = ({ label, score, isWinner }: { label: string, score: number, isWinner: boolean }) => {
 
     return (
         <div className={`${winnerStyles(isWinner, true)} w-full font-bold h-wrapper-score&timer flex justify-between items-center text-lg rounded-lg px-6 py-6 sm:py-3 sm:text-sm sm:h-12 xsm:px-3`}>

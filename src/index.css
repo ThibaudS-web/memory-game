@@ -83,7 +83,27 @@
     border-right: 20px solid transparent;
     border-bottom: 20px solid #FDA214; 
     top: -20px;
-    left: calc(50% - 15px);
+    left: calc(50% - 20px);
+  }
+
+  @media screen and (max-width: 768px) {
+    .triangle {
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid #FDA214; 
+      top: -15px;
+      left: calc(50% - 15px);
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .triangle {
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #FDA214; 
+      top: -10px;
+      left: calc(50% - 10px);
+    }
   }
 
 }

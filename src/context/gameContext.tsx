@@ -2,7 +2,7 @@ import { createContext, useState } from 'react'
 import IGameContext from './IGameContext'
 import { Tile } from "../types/tile"
 import { v4 as uuidv4 } from 'uuid'
-import { iconComponents } from '../utils/icons'
+import { iconComponents } from '../utils/fontAwesome_icons'
 import { shuffleArray } from '../utils/shuffleArray'
 import { Player } from '../types/MultiPlayers'
 

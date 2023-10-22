@@ -1,11 +1,11 @@
 import { createPortal } from "react-dom"
-import Button from "./Button"
 import { useContext } from "react"
 import { GameContext } from "../context/gameContext"
 import { convertSecondsToMinutes } from "../utils/convertSecondsToMinutes"
+import ButtonGroup from "./ButtonGroup"
 
 const ModalSinglePlayer = () => {
-    const { newGame, restartGame, scoreSinglePlayer } = useContext(GameContext)
+    const { scoreSinglePlayer } = useContext(GameContext)
 
     const { move, timer } = scoreSinglePlayer
 
@@ -28,14 +28,7 @@ const ModalSinglePlayer = () => {
                         </span>
                     </div>
                 </div>
-                <div className="flex justify-center w-full gap-3.5 sm:flex-col">
-                    <Button className="btn-nav bg-btn-primary text-[#FCFCFC] hover:bg-btn-primary-hover sm:text-lg" handleClick={restartGame}>
-                        Restart
-                    </Button>
-                    <Button className="btn-nav bg-btn-secondary text-[#304859] hover:bg-btn-secondary-hover sm:text-lg" handleClick={newGame}>
-                        Setup New Game
-                    </Button>
-                </div>
+                <ButtonGroup />
             </div>
         </div>, document.body)
     )
