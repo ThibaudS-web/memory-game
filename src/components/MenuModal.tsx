@@ -8,7 +8,7 @@ const MenuModal = ({ handleClick }: { handleClick: () => void }) => {
 
     return (
         createPortal(<div className="w-full h-full absolute flex justify-center items-center z-10 bg-black">
-            <div className="bg-white rounded-3xl flex flex-col items-center w-10/12 gap-3.5 p-6">
+            <div className="bg-white rounded-3x flex flex-col items-center w-10/12 gap-3.5 p-6">
                 <Button
                     className="btn-nav bg-btn-primary text-[#FCFCFC]"
                     handleClick={() => {
