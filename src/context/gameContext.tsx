@@ -26,7 +26,7 @@ const initial: IGameContext = {
     isMultiPlayersGame: false,
     isTimerRunning: false,
     numbersOfTiles: 8,
-    isGameOver: false,
+    isGameOver: true,
 
     setTheme: () => { },
     setPlayers: () => { },

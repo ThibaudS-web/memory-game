@@ -5,6 +5,7 @@ import PlayerLeaderBoard from "./PlayerLeaderBoard"
 
 import ButtonGroup from "./ButtonGroup"
 import calculateWinner from "../utils/LeaderScoreUtils"
+import { generateParticules } from "../utils/Particule"
 
 
 const ModalMultiPlayers = () => {
@@ -19,6 +20,8 @@ const ModalMultiPlayers = () => {
             return <PlayerLeaderBoard isWinner={isPlayerWinner(player)} key={index} label={isPlayerWinner(player) ? winner : player.name} score={player.score} />
         })
     }
+
+    generateParticules()
 
     return (
         createPortal(<div className="w-full h-full absolute flex justify-center items-center z-10 bg-black">

@@ -3,11 +3,14 @@ import { useContext } from "react"
 import { GameContext } from "../context/gameContext"
 import { convertSecondsToMinutes } from "../utils/convertSecondsToMinutes"
 import ButtonGroup from "./ButtonGroup"
+import { generateParticules } from "../utils/Particule"
 
 const ModalSinglePlayer = () => {
     const { scoreSinglePlayer } = useContext(GameContext)
 
     const { move, timer } = scoreSinglePlayer
+
+    generateParticules()
 
     return (
         createPortal(<div className="w-full h-full absolute flex justify-center items-center z-10 bg-black">
