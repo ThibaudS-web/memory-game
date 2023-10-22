@@ -12,9 +12,9 @@ Users should be able to:
 
 ### Screenshot
 
-![](screenshots\memories_small.png)
-![](screenshots\memories_multi_large.png)
-![](screenshots\memories_phone_gameover.png)
+![](screenshots/memories_small.png)
+![](screenshots/memories_multi_large.png)
+![](screenshots/memories_phone_gameover.png)
 
 ### Live demo
 
