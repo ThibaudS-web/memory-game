@@ -40,7 +40,7 @@ const Tile = ({ children, tile }: { children: ReactNode, tile: TileType }) => {
     return (
         <div
             onClick={handleClickTile}
-            className={`${selectTileBackground(checked, tile)} ${selectTileSize(gridSize)} flex justify-center items-center font-bold rounded-full text-[#FCFCFC] cursor-pointer `}
+            className={`${selectTileBackground(checked, tile)} ${selectTileSize(gridSize)} flex justify-center font-bold items-center rounded-full text-[#FCFCFC] cursor-pointer `}
         >
             {checked || tile.matched ? children : null}
         </div>
