@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --padding-header: 2.375rem;  
+  }
+
+  html {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  body {
+    font-size: 1.125rem;
+    user-select: none;
+  }
+}
+
+@layer components {
+  .btn-select {
+    background-color: #DFE7EC;
+    color: #FCFCFC;
+    border-radius: 2rem;
+    font-weight: bold;
+    width: 100%;
+    font-size: 1.625rem;
+  }
+
+  .btn-nav {
+    border-radius: 2rem;
+    font-weight: bold;
+    width: 100%;
+    font-size: 1.25rem;
+    white-space: nowrap;
+    padding: 0.688rem 1.516rem; 
+  }
+
+  .btn-select:hover{
+    background-color: #6395B8;
+  }
+
+  .page-wrapper {
+    width: calc(1100px + var(--padding-header) * 2);
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .tiles-wrapper-small {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .tiles-wrapper-large {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .triangle {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #FDA214; 
+    top: -20px;
+    left: calc(50% - 20px);
+  }
+
+  @media screen and (max-width: 768px) {
+    .triangle {
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid #FDA214; 
+      top: -15px;
+      left: calc(50% - 15px);
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .triangle {
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #FDA214; 
+      top: -10px;
+      left: calc(50% - 10px);
+    }
+  }
+
+}
