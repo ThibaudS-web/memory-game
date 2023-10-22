@@ -27,10 +27,6 @@
     font-size: 1.125rem;
     user-select: none;
   }
-  
-  *::-webkit-any-link {
-    outline: none;
-  }  
 }
 
 @layer components {
@@ -114,5 +110,5 @@
     .tile-hover {
        background-color:#6395B8;
     }
-  } 
+  }
 }
