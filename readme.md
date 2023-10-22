@@ -18,7 +18,7 @@ Users should be able to:
 
 ### Live demo
 
-Live Site URL: [Add live site URL here](https://memory-game-thibauds.vercel.app/)
+Live Site URL: [Memory Game - ThibaudS](https://memory-game-thibauds.vercel.app/)
 
 ### Built with
 
